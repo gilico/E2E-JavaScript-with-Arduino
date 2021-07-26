@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="insert_code_style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="success"></div>
+    <div class="wrapper">
+        <h1>הכנס את הקוד לניטרול הפצצה</h1>
+
+        <p id="random"></p>
+
+        <form id="formCode" action="code_insert.html" method="post">
+            <input class="dig" name="inArr" value="" type="number" min="1" max="100" autofocus id="inp" />
+            <input class="dig" name="inArr" value="" type="number" min="1" max="100" />
+            <input class="dig" name="inArr" value="" type="number" min="1" max="100" />
+            <input class="dig" name="inArr" value="" type="number" min="1" max="100" />
+            <input class="dig" name="inArr" value="" type="number" min="1" max="100" />
+
+
+            <p id="btnCon"><button type="button" onclick="CreateLoadGif()" id="btn">לחץ לבדיקת הקוד</button></p>
+        </form>
+        <br />
+        <p id="blank"></p>
+
+        <div id="loading"></div>
+        <p id="ans">
+        </p>
+    </div>
+    <script src="../fullScreenScript.js"></script>
+    <script src="../loading-gif.js"></script>
+    <script src="insert_code_script.js"></script>
+</body>
+</html>
