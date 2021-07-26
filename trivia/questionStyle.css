@@ -1,0 +1,242 @@
+﻿* {
+    font-family: 'Guttman Haim';
+    color: #1fc134;
+    direction: rtl;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    height: 97vh;
+}
+
+#wrapper {
+    height: 100%;
+    margin: 0 auto;
+    border: 1px solid #1fc134;
+    position: relative;
+    width: 99%;
+    box-shadow: 0 0 9px 2px #1fc134;
+}
+#timer {
+    direction: ltr;
+    width: 10%;
+    height: 15%;
+    position: relative;
+    margin-left: 2vw;
+    margin-top: 2vw;
+    display: flex;
+    float: left;
+    color: red;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    box-shadow: 0 0 10px 3px red;
+    border-radius: 2px;
+}
+#exp-msg {
+    font-size: 40px;
+    width: 20%;
+    position: absolute;
+    left: 15%;
+    top: 8%;
+    direction: ltr;
+}
+
+
+#que-cont {
+    margin: 2% 5% .5%;
+    height: 25%;
+    width: 70%;
+    font-size: 38px;
+    display: flex;
+    align-items: center;
+}
+
+
+#ans-cont {
+    position: relative;
+    margin: 0 auto;
+    height: 52%;
+    width: 90%;
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    right: 5%;
+    bottom: 17%;
+    padding-right: 0;
+}
+
+#ans-cont > button {
+    font-size: 30px;
+    margin: 0 -1% .5% auto;
+    border-radius: 15%;
+    height: 40%;
+    width: 45%;
+    display: flex;
+    align-items: center;
+    padding-right: 1.5%;
+    background-color: #202020;
+   
+}
+
+#ans-cont > button:focus {
+    outline: none;
+}
+
+#random-cont {
+    position: absolute;
+    border: 1px solid #1fc134;
+    height: 15%;
+    width: 27%;
+    bottom: 3%;
+    left: 10.5%;
+    padding: 2px;
+}
+#rand-title, #points-title {
+    margin-top: 5px;
+    margin-right: 5px;
+    font-size: 20px;
+}
+
+#rand-num-cont, #points-cnt, #total-points {
+    direction: ltr;
+    height: 50%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+}
+
+#rand-num-cont > * {
+    margin-right: 10px;
+
+}
+.btn.chosen-answer {
+    box-shadow: 0 0 10px 3px #ffd800;
+    color: white;
+}
+
+.btn.correct-answer {
+    box-shadow: 0 0 10px 3px #0026ff;
+    color: blue;
+}
+
+.btn.wrong-answer {
+    box-shadow: 0 0 10px 3px #ff0000;
+    color: red;
+}
+
+#temp-points {
+    position: absolute;
+    border: 1px solid blue;
+    height: 15%;
+    width: 27%;
+    bottom: 3%;
+    right: 4%;
+    padding: 2px;
+}
+
+#points {
+    position: absolute;
+    border: 1px solid blue;
+    height: 15%;
+    width: 27%;
+    bottom: 3%;
+    right: 33.5%;
+    padding: 2px;
+}
+
+
+#success {
+    visibility: hidden;
+    position: absolute;
+    top: 29%;
+    left: 30%;
+    width: 40%;
+    height: 50%;
+    box-shadow: 0 0 10px 3px green;
+    background-color: black;
+    height: 20%;
+}
+
+#success_pop {
+    position: absolute;
+    top: 0;
+    opacity: 0.80;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    border-radius: 5px;
+}
+
+#success_pop h3{
+    position: relative;
+    top: 8%;
+    color: white;
+    font-size: 30px;
+    text-shadow: 3px 3px 1px black;
+}
+
+#form{
+    visibility: hidden;
+    position: absolute;
+    top: 6%;
+    left: 10.5%;
+    width: 85%;
+    height: 70%;
+    background-color: black;
+    box-shadow: 0 0 10px 3px green;
+    text-align: center;
+    padding-top: 4%;
+    font-size: 28px;
+}
+
+#loose {
+    visibility: hidden;
+    position: absolute;
+    top: 6%;
+    left: 10.5%;
+    width: 85%;
+    height: 70%;
+    background-color: black;
+    box-shadow: 0 0 10px 3px green;
+}
+#looser-pop {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    opacity: 0.80;
+    width: 100%;
+    height: 100%;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 5px;
+}
+
+#looser-pop h3 {
+    color: white;
+    font-size: 60px;
+    text-shadow: 3px 3px 1px black;
+    color: red;
+}
+
+#form > input {
+    width: 23%;
+    height: 15%;
+    font-size: 20px;
+    color: white;
+    background-color: dimgrey;
+    text-align: center;
+}
+
+
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

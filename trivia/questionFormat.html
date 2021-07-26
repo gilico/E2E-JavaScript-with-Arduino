@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="questionStyle.css" rel="stylesheet" />
+    <script defer src="questionScript.js"></script>
+</head>
+<body onload="ChosenRandomQuestions()">
+    <div id="wrapper">
+        <div id="timer" class="timer"></div>
+        <div id="exp-msg">:זמן לפיצוץ</div>
+
+        <div id="que-cont" class="que-cont">
+            <div id="question" class="question"></div>
+        </div>
+
+        <div id="ans-cont" class="answers-con"></div>
+
+        <div id="random-cont">
+            <div id="rand-title">ספרות הקוד לכספת: </div>
+            <div id="rand-num-cont"></div>
+        </div>
+
+        <div id="temp-points">
+            <div id="points-title">הנקודות שזכית בשאלה האחרונה:</div>
+            <div id="points-cnt"></div>
+        </div>
+
+        <div id="points">
+            <div id="points-title">סה"כ נקודות במשימה:</div>
+            <div id="total-points"></div>
+        </div>
+
+        <div id="success"></div>
+        <div id="loose"></div>
+
+        <form id="form" onsubmit="event.preventDefault()">
+            <h2>קחו את הכרטיס וגלו איזו משימה מחכה לכם</h2>
+            <h3>[ לאחר שתסיימו הצמידו את הכרטיס למיקום היעודי ]</h3>
+            <input type="text" name="misPoint" class="misPoints" id="mission-points" value="" placeholder="הנקודות שלכם יופיעו כאן"  onfocus="this.value=''"/>
+        </form>
+    </div>
+    <script src="../fullScreenScript.js"></script>
+</body>
+</html>
