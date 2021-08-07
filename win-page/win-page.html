@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>WINNERS</title>
+    <link href="Style-win.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <h1>כל הכבוד!</h1>
+            <h2>ניטרלתם את הפצצה והצלתם את העולם</h2>
+        </header>
+        <div id="content">
+            <div id="text">עמדתם במשימה וקיבלתם&nbsp</div>
+            <div id="points"></div>
+            <div id="text"> &nbspנקודות</div>
+        </div>
+    </div>
+
+    <script>
+        var sessionStr = sessionStorage.getItem('total');
+        var pointsPassed = JSON.parse(sessionStr);
+        var totalPoints = parseInt(pointsPassed);
+        document.getElementById("points").innerText = totalPoints;
+
+    </script>
+    <script src="../../fullScreenScript.js"></script>
+</body>
+</html>
