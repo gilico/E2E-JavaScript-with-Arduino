@@ -1,0 +1,61 @@
+﻿* {
+    font-family: 'Guttman Haim';
+    color: #1fc134;
+    direction: rtl;
+}
+
+body {
+    background-color: black;
+    height: 97vh;
+}
+
+#wrapper {
+    height: 100%;
+    margin: 0 auto;
+    border: 1px solid #1fc134;
+    background-image: url('../../images/mission_imposible.jpg');
+    background-size: 600px;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: 15%;
+    box-shadow: 0 0 9px 2px #1fc134;
+}
+
+#titel{
+    font-size: 50px;
+    text-align: center;
+    margin-top: 25%;
+}
+#img-con{
+    position: absolute;
+    bottom: 18%;
+    width: 98%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    width: 100px;
+    height: 150px;
+    position: relative;
+    animation-name: arrow;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    
+}
+
+@keyframes arrow {
+    0% {
+        top: 0px;
+    }
+
+    50% {
+        top: 100px;
+    }
+
+    100% {
+        top: 0px;
+    }
+}

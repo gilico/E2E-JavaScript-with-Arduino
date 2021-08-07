@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>MISSION IMPOSSIBLE</title>
+    <link href="style-first.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="wrapper">
+        <div id="titel">לתחילת המשימה לחצו על הכפתור</div>
+        <div id="img-con">
+            <img src="../../images/arrow.png" alt="arrow" />
+        </div>
+        <audio id="audio">
+            <source src="../../music/Mission_Impossible_Soundtrack.mp3" type="audio/mp3" />
+        </audio>
+    </div>
+
+    <script src="../../fullScreenScript.js"></script>
+    <script>
+        document.addEventListener("keydown", nextPage)
+
+        function nextPage(k) {
+            // if arduino press space
+            if (k.keyCode == 32) {
+                document.getElementById('audio').play();
+                window.open('../explaination-page/explanation-page.html', '_blank');
+               
+            }
+        }
+
+        
+    </script>
+</body>
+</html>
