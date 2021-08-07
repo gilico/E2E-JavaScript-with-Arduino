@@ -74,8 +74,6 @@ addEventListener('keydown', (event) => {
         document.getElementById("btn4").click();
 })
 
-
-
 function selectAnswer() { 
     const selectedButton = this;
     const correct = selectedButton.dataset.correct;
@@ -98,7 +96,7 @@ function selectAnswer() {
 var tempPointsElement = document.getElementById('points-cnt');
 var totalPointsElement = document.getElementById('total-points');
 var prevPoints = 0;
-
+var totalPoints = 0;
 function CorrectAnswer() {
     //points erned last question
     tempPointsElement.innerText = tempPoints;
@@ -109,7 +107,7 @@ function CorrectAnswer() {
     for (var i = 0; i < allMissionsPoints.length; i++) {
         sumMissions += allMissionsPoints[i];
     }
-    var totalPoints = questionsPoints + sumMissions;
+    totalPoints = questionsPoints + sumMissions;
     totalPointsElement.innerText = totalPoints;
     //only after the question is correct the question will replace//
     currQuestionIndex++;
@@ -122,6 +120,7 @@ function CorrectAnswer() {
     //upload new question
     SetNextQuestion();
 }
+
 //create an array of random numbers 1-99
 var randNum = [0, 0, 0, 0, 0];
 for (var i = 0; i < randNum.length; i++) {
@@ -158,20 +157,45 @@ function BeforeNextQuestion() {
 }
 
 var allMissionsPoints = [0, 0, 0];
+//Every 3 correct answers this function will work
 function SendToMission() {
+    //popup form to insert the mission points
     const formElement = document.getElementById('form');
     formElement.style.visibility = 'visible';
-    const input = document.getElementById('mission-points')
-    input.focus();
 
-    formElement.style.visibility = 'visible';
+    var keyPassWord = document.getElementById("card-password");
+    var randPass = Math.floor(Math.random() * cardReleaseCode.length);
+    keyPassWord.innerText = cardReleaseCode[randPass];
 
-    input.addEventListener('keydown', event => {
+    const input = document.getElementById('mission-points');
+    //the points will automatically type by the arduino
+    //input.focus();
+
+
+    addEventListener('keydown', (event) => {
+        //  When arduino press 'n' : new mission tab wil appear
+        if (event.keyCode == 78) {
+            window.open(srcMissionPaged[missionIndex], '_blank');
+        }
+    });
+
+    var storageNames = ['getPoint3', 'getPoint2', 'getPoint3'];
+
+    //when Enter key will be pressed by the arduino
+    addEventListener('keydown', event => {
         if (event.keyCode == 13) {
-            allMissionsPoints[missionIndex] = parseInt(input.value);
+            //get the points from the current arduino mission
+            var sessionSt = localStorage.getItem(storageNames[missionIndex]);
+            var pointStr = JSON.parse(sessionSt);
+            var currMissionPoints = parseInt(pointStr);
+            //add the cuurent mission opints to an array
+            allMissionsPoints[missionIndex] = currMissionPoints;
+            console.log(pointStr);
+            //allMissionsPoints[missionIndex] = parseInt(input.value);
             formElement.style.visibility = 'hidden';
         }
     });
+    //only after there is points in the array - the mission will end
     if (allMissionsPoints[missionIndex] > 1) {
         isMissionComplete = true;
     }
@@ -184,7 +208,7 @@ function ShowRandomNum() {
     var popUp = document.getElementById("success_pop");
     endContainer.style.visibility = 'visible';
     var h3 = document.createElement("h3");
-    h3.innerHTML = `הסיפרה הבאה לכספת היא: ${randNum[index]}`;
+    h3.innerHTML = `הסיפרה הבאה לניטרול היא: ${randNum[index]}`;
 
     popUp.appendChild(h3);
     endContainer.appendChild(popUp);
@@ -214,7 +238,9 @@ function EndOfTrivia() {
 
 function RedirectToNextPage() {
     //sending the 'randNum' array 
-    sessionStorage.setItem('randNumArray', JSON.stringify(randNum))
+    sessionStorage.setItem('randNumArray', JSON.stringify(randNum));
+    //sendig the points
+    sessionStorage.setItem('total', JSON.stringify(totalPoints))
     //directing to the next page
     window.location.href = '../CODE_INSERT/insert_code_index.html';
 }
@@ -268,6 +294,10 @@ function timeIsOverPopUp() {
 }
 
 
+
+var srcMissionPaged = ["../missions-pages/welcome-pages/loop-welcome-page.html", "../missions-pages/welcome-pages/memory-welcome-page.html", "../missions-pages/welcome-pages/speed-welcome-page.html"];
+
+var cardReleaseCode = ['24425','13431','68486'];
 
 
 const easyQuestions = [

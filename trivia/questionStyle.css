@@ -35,7 +35,7 @@ body {
     border-radius: 2px;
 }
 #exp-msg {
-    font-size: 40px;
+    font-size: 30px;
     width: 20%;
     position: absolute;
     left: 15%;
@@ -160,7 +160,7 @@ body {
     height: 50%;
     box-shadow: 0 0 10px 3px green;
     background-color: black;
-    height: 20%;
+    height: 50%;
 }
 
 #success_pop {
@@ -191,7 +191,6 @@ body {
     background-color: black;
     box-shadow: 0 0 10px 3px green;
     text-align: center;
-    padding-top: 4%;
     font-size: 28px;
 }
 
@@ -226,17 +225,15 @@ body {
     color: red;
 }
 
-#form > input {
-    width: 23%;
-    height: 15%;
-    font-size: 20px;
+#card-con {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5%;
+}
+#card-con > * {
+    float: right;
+    margin-left: 20px;
     color: white;
-    background-color: dimgrey;
-    text-align: center;
 }
 
-
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}

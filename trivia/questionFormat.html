@@ -18,7 +18,7 @@
         <div id="ans-cont" class="answers-con"></div>
 
         <div id="random-cont">
-            <div id="rand-title">ספרות הקוד לכספת: </div>
+            <div id="rand-title">ספרות הקוד לניטרול: </div>
             <div id="rand-num-cont"></div>
         </div>
 
@@ -38,7 +38,13 @@
         <form id="form" onsubmit="event.preventDefault()">
             <h2>קחו את הכרטיס וגלו איזו משימה מחכה לכם</h2>
             <h3>[ לאחר שתסיימו הצמידו את הכרטיס למיקום היעודי ]</h3>
-            <input type="text" name="misPoint" class="misPoints" id="mission-points" value="" placeholder="הנקודות שלכם יופיעו כאן"  onfocus="this.value=''"/>
+
+            <div id="card-con">
+                <div id="title-card">הזינו את הקוד בלוח המקשים: </div>
+                <div id="card-password"></div>
+            </div>
+
+            <div>לחצו על הכפתור כדי לעבור למשימה הבאה</div>
         </form>
     </div>
     <script src="../fullScreenScript.js"></script>
