@@ -18,6 +18,7 @@ body {
     justify-content: center;
     margin: 0 auto;
     border: 1px solid #1fc134;
+    box-shadow: 0 0 9px 2px #1fc134;
     background-image: url('../../images/mission_imposible.jpg');
     background-size: 600px;
     background-repeat: no-repeat;
