@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>Impossible-Mission</title>
     <link href="questionStyle.css" rel="stylesheet" />
     <script defer src="questionScript.js"></script>
 </head>
@@ -32,19 +32,27 @@
             <div id="total-points"></div>
         </div>
 
-        <div id="success"></div>
+        <div id="success-cont">
+            <div id="success"></div>
+        </div>
         <div id="loose"></div>
 
         <form id="form" onsubmit="event.preventDefault()">
-            <h2>קחו את הכרטיס וגלו איזו משימה מחכה לכם</h2>
-            <h3>[ לאחר שתסיימו הצמידו את הכרטיס למיקום היעודי ]</h3>
-
-            <div id="card-con">
-                <div id="title-card">הזינו את הקוד בלוח המקשים: </div>
-                <div id="card-password"></div>
+            <div id="before-mission">
+                <h2>לחצו על הכפתור כדי לעבור לאתגר הבא</h2>
+                <h3>קראו את הוראות האתגר היטב</h3>
             </div>
 
-            <div>לחצו על הכפתור כדי לעבור למשימה הבאה</div>
+            <div id="after-mission">
+                <div id="card-con">
+                    <div id="title-card">הזינו את הקוד בלוח המקשים: </div>
+                    <div id="card-password"></div>
+                </div>
+
+                <h2>קחו את הכרטיס והצמידו אותו למתקן היעודי</h2>
+                <h3>[ המתינו עד שהנורה ע"ג המתקן תהפוך לירוקה ]</h3>
+
+            </div>
         </form>
     </div>
     <script src="../fullScreenScript.js"></script>
