@@ -2,6 +2,8 @@
 const questionContainer = document.getElementById('que-cont');
 const questionElement = document.getElementById('question');
 const answerElement = document.getElementById('ans-cont');
+const mainElement = document.getElementById('wrapper');
+
 var questionsPoints = 0;
 let shuflleQustions;
 let currQuestionIndex = 0;
@@ -133,27 +135,31 @@ var missionIndex = 0;
 var isMissionComplete = false;
 var numsContainer = document.getElementById('rand-num-cont');
 function BeforeNextQuestion() {
-    //every two questions a random num will show with popup
-    if (currQuestionIndex % 2 == 0) {
-        num = document.createElement('div');
-        numsContainer.appendChild(num);
-        ShowRandomNum(); //select the random number
-        num.innerText = randNum[index];
-        index++;
-    }
-    //every 3 question send to a new mission of *arduino*
-    if (currQuestionIndex % 3 == 0) {
-        isMissionComplete = false;
-        SendToMission();
-    }
-    //only after the mission is complete the index increase
-    if (isMissionComplete) {
-        missionIndex++;
-        isMissionComplete = false;
-    }
     //check if the user finished 10 qeustions
-    if (currQuestionIndex == 10) 
+    if (currQuestionIndex === 10) {
         EndOfTrivia();
+    } else {
+        //every two questions a random num will show with popup
+        if (currQuestionIndex % 2 === 0 && currQuestionIndex < 10) {
+            num = document.createElement('div');
+            numsContainer.appendChild(num);
+            ShowRandomNum(); //select the random number
+            num.innerText = randNum[index];
+            index++;
+        }
+        //every 3 question send to a new mission of *arduino*
+        if (currQuestionIndex % 3 === 0) {
+            isMissionComplete = false;
+            SendToMission();
+        }
+        //only after the mission is complete the index increase
+        if (isMissionComplete) {
+            if (missionIndex < 3) {
+                missionIndex++;
+            }
+            isMissionComplete = false;
+        }
+    }
 }
 
 var allMissionsPoints = [0, 0, 0];
@@ -166,16 +172,26 @@ function SendToMission() {
     var keyPassWord = document.getElementById("card-password");
     var randPass = Math.floor(Math.random() * cardReleaseCode.length);
     keyPassWord.innerText = cardReleaseCode[randPass];
+    cardReleaseCode.splice(randPass, 1);
 
-    const input = document.getElementById('mission-points');
-    //the points will automatically type by the arduino
-    //input.focus();
-
-
+    //There is two elements in this popup: before and after the challenge
+    const before = document.getElementById('before-mission');
+    const after = document.getElementById('after-mission');
+    before.style.visibility = 'visible';
+    after.style.visibility = 'hidden';
+    before.style.marginTop = '5%';
+    after.style.marginTop = '-5%';
+    
     addEventListener('keydown', (event) => {
-        //  When arduino press 'n' : new mission tab wil appear
-        if (event.keyCode == 78) {
-            window.open(srcMissionPaged[missionIndex], '_blank');
+        //  When arduino press 'n' : new challenge tab will appear
+        if (event.keyCode === 78 && currQuestionIndex < 10) {
+            after.style.visibility = 'visible';
+            before.style.visibility = 'hidden';
+            //send the challenge index to the 'challenge-welcome' page
+            sessionStorage.setItem('missionIndex', JSON.stringify(missionIndex));
+            //open the 'challenge-welcome' page
+            window.open("../missions-pages/welcome-pages/challenge-welcome.html", '_blank');
+            //window.open(srcMissionPaged[missionIndex], '_blank');
         }
     });
 
@@ -183,7 +199,7 @@ function SendToMission() {
 
     //when Enter key will be pressed by the arduino
     addEventListener('keydown', event => {
-        if (event.keyCode == 13) {
+        if (event.keyCode == 90) {
             //get the points from the current arduino mission
             var sessionSt = localStorage.getItem(storageNames[missionIndex]);
             var pointStr = JSON.parse(sessionSt);
@@ -191,7 +207,7 @@ function SendToMission() {
             //add the cuurent mission opints to an array
             allMissionsPoints[missionIndex] = currMissionPoints;
             console.log(pointStr);
-            //allMissionsPoints[missionIndex] = parseInt(input.value);
+            after.style.visibility = 'hidden';
             formElement.style.visibility = 'hidden';
         }
     });
@@ -201,22 +217,24 @@ function SendToMission() {
     }
 }
 
-
+var parentPopup = document.getElementById('success-cont');
 var endContainer = document.getElementById('success');
 function ShowRandomNum() {
+    parentPopup.style.zIndex = "1";
     endContainer.innerHTML = '<div id="success_pop"></div>';
     var popUp = document.getElementById("success_pop");
-    endContainer.style.visibility = 'visible';
+    parentPopup.style.visibility = 'visible';
     var h3 = document.createElement("h3");
-    h3.innerHTML = `הסיפרה הבאה לניטרול היא: ${randNum[index]}`;
-
+    h3.innerHTML = `המספר הבא לניטרול הפצצה: ${randNum[index]}`;
+    
     popUp.appendChild(h3);
     endContainer.appendChild(popUp);
 
     setTimeout(() => {
         endContainer.removeChild(popUp)
-        endContainer.style.visibility = 'hidden';
-    }, 2500);
+        parentPopup.style.visibility = 'hidden';
+        parentPopup.style.zIndex = "0";
+    }, 3000);
 }
 
 
@@ -228,19 +246,26 @@ function EndOfTrivia() {
     endContainer.style.height = '35%';
     endContainer.style.backgroundColor = '#456fb3';
     var h3 = document.createElement("h3");
-    h3.innerHTML = "הזינו את הספרות שקיבלתם בעמוד הבא";
+    h3.innerHTML = "הזינו את הספרות שקיבלתם בעמוד הבא. לחצו על הכפתור הלבן להמשך.";
     
     popUp.appendChild(h3);
     endContainer.appendChild(popUp);
     //after 3 sec the function will execute
-    setTimeout(RedirectToNextPage, 3000)
+    document.addEventListener('keydown', event => {
+        if (event.keyCode === 32) {
+            RedirectToNextPage();/*t2*/
+        }
+    })
+    //setTimeout(RedirectToNextPage, 3000)
 }
 
 function RedirectToNextPage() {
-    //sending the 'randNum' array 
+    //send the 'randNum' array 
     sessionStorage.setItem('randNumArray', JSON.stringify(randNum));
-    //sendig the points
-    sessionStorage.setItem('total', JSON.stringify(totalPoints))
+    //send the points
+    sessionStorage.setItem('total', JSON.stringify(totalPoints));
+    //send the current time
+    sessionStorage.setItem('timeRemain', JSON.stringify(timeRemain));
     //directing to the next page
     window.location.href = '../CODE_INSERT/insert_code_index.html';
 }
@@ -249,7 +274,6 @@ function RedirectToNextPage() {
 setInterval(TimerFun, 1000);
 var maxTime = 15;
 var timeRemain = maxTime * 60;
-var isTimeGood = true;
 
 function TimerFun() {
     var countDown = document.getElementById('timer');
@@ -268,11 +292,10 @@ function TimerFun() {
     timeRemain--;
 
     if (timeRemain <= -2) {
-        isTimeGood = false;
         countDown.innerHTML = '';
         countDown.style.visibility = "hidden";
-
         questionElement.innerText = "";
+        //remove the answers from page so the user can't answer them
         while (answerElement.firstChild) {
             answerElement.removeChild(answerElement.firstChild)
         }
@@ -294,10 +317,7 @@ function timeIsOverPopUp() {
 }
 
 
-
-var srcMissionPaged = ["../missions-pages/welcome-pages/loop-welcome-page.html", "../missions-pages/welcome-pages/memory-welcome-page.html", "../missions-pages/welcome-pages/speed-welcome-page.html"];
-
-var cardReleaseCode = ['24425','13431','68486'];
+var cardReleaseCode = ['24425','13431','68486','41852','32567'];
 
 
 const easyQuestions = [
