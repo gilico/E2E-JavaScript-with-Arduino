@@ -15,7 +15,7 @@
             <source src="../../music/Mission_Impossible_Soundtrack.mp3" type="audio/mp3" />
         </audio>
     </div>
-
+    
     <script src="../../fullScreenScript.js"></script>
     <script>
         document.addEventListener("keydown", nextPage)
@@ -23,13 +23,13 @@
         function nextPage(k) {
             // if arduino press space
             if (k.keyCode == 32) {
-                document.getElementById('audio').play();
+                var music = document.getElementById('audio');
+                music.play();
+                music.volume = 0.15 ;
                 window.open('../explaination-page/explanation-page.html', '_blank');
                
             }
         }
-
-        
     </script>
 </body>
 </html>
