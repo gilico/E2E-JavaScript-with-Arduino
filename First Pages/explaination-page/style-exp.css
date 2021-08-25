@@ -9,6 +9,7 @@ body {
     height: 97vh;
 }
 
+
 #wrapper {
     height: 100%;
     margin: 0 auto;
@@ -29,3 +30,24 @@ body {
     margin-top: 15%;
 }
 
+#loading {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+    width: 150px;
+    height: 150px;
+    z-index: 9999;
+    background-repeat: no-repeat;
+}
+
+#loading img {
+    width: 30%;
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+}
+#explanation{
+    font-size: 24px;
+}
