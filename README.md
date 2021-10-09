@@ -5,10 +5,10 @@ An End to End project that's include Arduino missions and trivia game with JavaS
 
 To choose an answer I set 4 laser sensor. When the user shoot to his answer, with a laser gun, the HTML button will click it self.
 For every 2 correct answers the user will have a number between 1 to 99, that will use him to win and end the game.
-For every 3 correct anwers the user will be sent to an Arduino challenge. The Challenges are:
-1. The Accurcy Challenge - The user will try to take a metal loop through a wire,from the start point to the end point, without touching the wire.
+For every 3 correct questions the user will be sent to an Arduino challenge. The Challenges are:
+1. The Accurcy Challenge - The user will try to take a metal loop through a wire,from the start point, to the end point, without touching the wire.
 2. The Memory Challenge - A random sequence of LEDs is generated. At first the arduino will show the first LED, and when the user will press the button with the same color of the LED, the next LED at the sequence will appear. Just like the 'old' game 'Simon Says'.
-3. The Speed On Challenge - The user needs to press as fast as he can on the current button that it's LED is turned ON.
+3. The 'Speed-On' Challenge - The user needs to press as fast as he can on the current button that it's LED is turned ON.
 
 All the strikes and points from the arduino chllenges will appear on the challenges pages.
 
